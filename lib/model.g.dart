@@ -17,3 +17,13 @@ Map<String, dynamic> _$domainToJson(domain instance) => <String, dynamic>{
       'domain': instance.name,
       'isActive': instance.isActive,
     };
+
+account _$accountFromJson(Map<String, dynamic> json) => account(
+      json['address'] as String,
+      json['password'] as String,
+    );
+
+Map<String, dynamic> _$accountToJson(account instance) => <String, dynamic>{
+      'address': instance.address,
+      'password': instance.password,
+    };

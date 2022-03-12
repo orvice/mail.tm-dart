@@ -14,4 +14,15 @@ class Client {
     final List map = json.decode(response.body)['hydra:member'];
     return map.map((v) => new domain.fromJson(v)).toList();
   }
+
+  Future<account> createAccount() async {
+    var url = Uri.parse(endpoint + '/accounts');
+    var response = await http.post(url);
+    if (response.statusCode != 201) {
+      throw Exception('Failed to create account');
+    }
+
+    final Map<String, dynamic> map = json.decode(response.body);
+    return new account.fromJson(map);
+  }
 }

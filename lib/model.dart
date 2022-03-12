@@ -22,3 +22,22 @@ class domain {
   /// Connect the generated [_$IPToJson] function to the `toJson` method.
   Map<String, dynamic> toJson() => _$domainToJson(this);
 }
+
+@JsonSerializable()
+class account {
+  @JsonKey(name: 'address')
+  String address;
+
+  @JsonKey(name: 'password')
+  String password;
+
+  account(this.address, this.password);
+
+  /// Connect the generated [_$domainFromJson] function to the `fromJson`
+  /// factory.
+  factory account.fromJson(Map<String, dynamic> json) =>
+      _$accountFromJson(json);
+
+  /// Connect the generated [_$IPToJson] function to the `toJson` method.
+  Map<String, dynamic> toJson() => _$accountToJson(this);
+}
