@@ -6,6 +6,8 @@ import './model.dart';
 class Client {
   String endpoint = 'https://api.mail.tm';
 
+  String token = '';
+
   Future<List<domain>> getDomains() async {
     var url = Uri.parse(endpoint + '/domains');
     var response = await http.get(url);
@@ -56,6 +58,23 @@ class Client {
       final Map<String, dynamic> map = json.decode(response.body);
       return map['token'];
     });
+  }
+
+  Future<List<message>> getMessage() async {
+    var url = Uri.parse(endpoint + '/messages');
+    var response = await http.get(url, headers: this.getHeader());
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load messages');
+    }
+    final List map = json.decode(response.body)['hydra:member'];
+    return map.map((v) => new message.fromJson(v)).toList();
+  }
+
+  Map<String, String> getHeader() {
+    return {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer ' + this.token,
+    };
   }
 
   String getRandString(int len) {

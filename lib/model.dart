@@ -41,3 +41,23 @@ class account {
   /// Connect the generated [_$IPToJson] function to the `toJson` method.
   Map<String, dynamic> toJson() => _$accountToJson(this);
 }
+
+@JsonSerializable()
+class message {
+  String msgid = '';
+
+  String subject = '';
+  String intro = '';
+
+  bool seen = false;
+
+  message(this.msgid, this.subject, this.intro, this.seen);
+
+  /// Connect the generated [_$domainFromJson] function to the `fromJson`
+  /// factory.
+  factory message.fromJson(Map<String, dynamic> json) =>
+      _$messageFromJson(json);
+
+  /// Connect the generated [_$IPToJson] function to the `toJson` method.
+  Map<String, dynamic> toJson() => _$messageToJson(this);
+}

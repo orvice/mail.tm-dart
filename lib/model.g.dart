@@ -27,3 +27,17 @@ Map<String, dynamic> _$accountToJson(account instance) => <String, dynamic>{
       'address': instance.address,
       'password': instance.password,
     };
+
+message _$messageFromJson(Map<String, dynamic> json) => message(
+      json['msgid'] as String,
+      json['subject'] as String,
+      json['intro'] as String,
+      json['seen'] as bool,
+    );
+
+Map<String, dynamic> _$messageToJson(message instance) => <String, dynamic>{
+      'msgid': instance.msgid,
+      'subject': instance.subject,
+      'intro': instance.intro,
+      'seen': instance.seen,
+    };

@@ -33,4 +33,13 @@ void main() async {
   test('Create Create', () {
     expect(token, isNotNull);
   });
+
+  client.token = token;
+
+  var messages = await client.getMessage();
+  test('Get Messages', () {
+    expect(messages, isNotNull);
+  });
+
+  print(messages.length);
 }
