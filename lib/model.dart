@@ -8,7 +8,7 @@ class domain {
   String id;
 
   @JsonKey(name: 'domain')
-  String? name;
+  String name;
 
   @JsonKey(name: 'isActive')
   bool isActive;
@@ -29,7 +29,7 @@ class account {
   String address;
 
   @JsonKey(name: 'password')
-  String password;
+  String? password;
 
   account(this.address, this.password);
 

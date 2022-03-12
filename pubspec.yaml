@@ -8,7 +8,6 @@ dependencies:
   json_annotation: ^4.4.0
   http: ^0.13.4
   sprintf: ^4.0.2
-  dio: any
 
 
 dev_dependencies:
