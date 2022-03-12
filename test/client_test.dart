@@ -5,9 +5,6 @@ import 'package:test/test.dart';
 void main() async {
   var client = new Client();
 
-  var rs = client.getRandString(16);
-  print(rs);
-
   var domain;
 
   var domains = await client.getDomains();
@@ -28,5 +25,12 @@ void main() async {
   var resp = await client.createAccount(acct);
   test('Create Account', () {
     expect(resp.address, isNotNull);
+  });
+
+  // create token
+  print("create token");
+  var token = await client.createToken(resp);
+  test('Create Create', () {
+    expect(token, isNotNull);
   });
 }

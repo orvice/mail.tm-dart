@@ -33,7 +33,29 @@ class Client {
 
     // print(response.body);
     final Map<String, dynamic> map = json.decode(response.body);
-    return new account.fromJson(map);
+    var resp = new account.fromJson(map);
+    resp.password = acct.password;
+    return resp;
+  }
+
+  Future<String> createToken(account acct) {
+    var url = Uri.parse(endpoint + '/token');
+    //var url = Uri.parse('http://527efb16.proxy.webhookapp.com/');
+    var response = http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(acct),
+    );
+    return response.then((response) {
+      if (response.statusCode != 200) {
+        print(response.body);
+        throw Exception('Failed to create token');
+      }
+      final Map<String, dynamic> map = json.decode(response.body);
+      return map['token'];
+    });
   }
 
   String getRandString(int len) {
